@@ -1,0 +1,155 @@
+// ==============================================
+// Advanced Personal Page — Prisma Schema v1.3
+// Database: Supabase (PostgreSQL)
+// Auth: Supabase Auth (managed externally)
+// ==============================================
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// Social Links — Contact & Social Media
+// ─────────────────────────────────────────────
+model SocialLink {
+  id       String  @id @default(cuid())
+  platform String // whatsapp, linkedin, mostaql, etc.
+  url      String
+  labelAr  String  @map("label_ar")
+  labelEn  String  @map("label_en")
+  icon     String?
+  order    Int     @default(0)
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("social_links")
+}
+
+// ─────────────────────────────────────────────
+// Projects — Managed via CMS
+// ─────────────────────────────────────────────
+model Project {
+  id         String  @id @default(cuid())
+  slug       String  @unique
+  titleAr    String  @map("title_ar")
+  titleEn    String  @map("title_en")
+  summaryAr  String  @map("summary_ar")
+  summaryEn  String  @map("summary_en")
+  bodyAr     String  @map("body_ar") @db.Text
+  bodyEn     String  @map("body_en") @db.Text
+  previewUrl String? @map("preview_url")
+  skills     String[]
+  buildTime  String? @map("build_time")
+  order      Int     @default(0)
+
+  isPublished Boolean @default(false) @map("is_published")
+  isFeatured  Boolean @default(false) @map("is_featured")
+
+  images ProjectImage[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model ProjectImage {
+  id    String  @id @default(cuid())
+  url   String
+  altAr String? @map("alt_ar")
+  altEn String? @map("alt_en")
+  order Int     @default(0)
+
+  projectId String  @map("project_id")
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_images")
+}
+
+// ─────────────────────────────────────────────
+// Timeline — Journey / The Story
+// ─────────────────────────────────────────────
+model TimelineEntry {
+  id       String   @id @default(cuid())
+  date     DateTime
+  age      Int
+  titleAr  String   @map("title_ar")
+  titleEn  String   @map("title_en")
+  storyAr  String   @map("story_ar") @db.Text
+  storyEn  String   @map("story_en") @db.Text
+  imageUrl String?  @map("image_url")
+  order    Int      @default(0)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("timeline_entries")
+}
+
+// ─────────────────────────────────────────────
+// Survey Questions
+// ─────────────────────────────────────────────
+model SurveyQuestion {
+  id        String   @id @default(cuid())
+  textAr    String   @map("text_ar")
+  textEn    String   @map("text_en")
+  type      String // multiple_choice | free_text
+  optionsAr String[] @map("options_ar")
+  optionsEn String[] @map("options_en")
+  order     Int      @default(0)
+
+  isRequired Boolean @default(false) @map("is_required")
+  isActive   Boolean @default(true) @map("is_active")
+
+  responses SurveyResponse[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("survey_questions")
+}
+
+// ─────────────────────────────────────────────
+// Survey Responses
+// ─────────────────────────────────────────────
+model SurveyResponse {
+  id        String @id @default(cuid())
+  visitorId String @map("visitor_id")
+
+  questionId String         @map("question_id")
+  question   SurveyQuestion @relation(fields: [questionId], references: [id])
+
+  answer String
+  locale String @default("ar")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("survey_responses")
+}
+
+// ─────────────────────────────────────────────
+// Messages — Smart Contact Form
+// ─────────────────────────────────────────────
+model Message {
+  id          String @id @default(cuid())
+  senderName  String @map("sender_name")
+  senderEmail String @map("sender_email")
+  serviceType String @map("service_type") // MVP | SaaS | AI Integration
+  budget      String // $150-$500 | $500-$1000 | +$1000
+  body        String @db.Text
+
+  isRead      Boolean @default(false) @map("is_read")
+  emailStatus String  @default("pending") @map("email_status") // pending | sent | failed
+  locale      String  @default("ar")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("messages")
+}

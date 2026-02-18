@@ -1,26 +1,230 @@
 @import "tailwindcss";
 
+/* ==============================================
+   Advanced Personal Page — Design System v1.3
+   Philosophy: Luxury & Serenity (الفخامة والهدوء)
+   ============================================== */
+
+/* ─────────────────────────────────────────────
+   Theme System — Dark (Default) / Light
+   ───────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --color-primary: hsl(150, 25%, 35%);
+  --color-primary-hover: hsl(150, 30%, 42%);
+  --color-accent: hsl(150, 35%, 45%);
+  --color-bg: hsl(200, 15%, 8%);
+  --color-bg-secondary: hsl(200, 12%, 12%);
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-text: hsl(40, 10%, 92%);
+  --color-text-secondary: hsl(200, 10%, 60%);
+  --color-text-muted: hsl(200, 8%, 45%);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-error: hsl(0, 65%, 55%);
+  --color-success: hsl(150, 50%, 45%);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.35);
+
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+}
+
+[data-theme="light"] {
+  --color-primary: hsl(150, 30%, 30%);
+  --color-primary-hover: hsl(150, 35%, 36%);
+  --color-accent: hsl(150, 35%, 38%);
+  --color-bg: hsl(40, 20%, 96%);
+  --color-bg-secondary: hsl(40, 15%, 92%);
+  --color-surface: rgba(0, 0, 0, 0.03);
+  --color-surface-hover: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-text: hsl(200, 15%, 15%);
+  --color-text-secondary: hsl(200, 10%, 45%);
+  --color-text-muted: hsl(200, 8%, 60%);
+  --color-overlay: rgba(0, 0, 0, 0.4);
+  --color-error: hsl(0, 65%, 50%);
+  --color-success: hsl(150, 50%, 40%);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.12);
+
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+}
+
+/* ─────────────────────────────────────────────
+   Spacing Scale
+   ───────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
 }
 
+/* ─────────────────────────────────────────────
+   Tailwind v4 Theme Extension
+   ───────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-accent: var(--color-accent);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-border: var(--color-border);
+  --color-border-hover: var(--color-border-hover);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-overlay: var(--color-overlay);
+  --color-error: var(--color-error);
+  --color-success: var(--color-success);
+
+  --font-ar: var(--font-readex-pro);
+  --font-en: var(--font-plus-jakarta-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─────────────────────────────────────────────
+   Component Tokens — per 03-UI-UX-GUIDELINES.md §6
+   ───────────────────────────────────────────── */
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Smart Contact Card — Glassmorphism */
+.smart-contact-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: var(--space-2xl);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+/* Submit Project Button — "ابدأ المشروع 🚀" */
+.btn-submit-project {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  font-size: 1.1rem;
+  padding: 14px 32px;
+  border-radius: 14px;
+}
+
+/* ─────────────────────────────────────────────
+   Base Styles
+   ───────────────────────────────────────────── */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────
+   Typography
+   ───────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p,
+span,
+li {
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────
+   Reduced Motion — Accessibility
+   ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─────────────────────────────────────────────
+   Scrollbar (Dark theme)
+   ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* ─────────────────────────────────────────────
+   Selection
+   ───────────────────────────────────────────── */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-text);
 }

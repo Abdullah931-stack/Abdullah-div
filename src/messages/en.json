@@ -1,0 +1,95 @@
+{
+    "common": {
+        "siteTitle": "Advanced Personal Page",
+        "siteDescription": "A professional digital identity showcasing projects, career journey, and visitor engagement"
+    },
+    "nav": {
+        "home": "Home",
+        "portfolio": "Portfolio",
+        "journey": "My Journey",
+        "contact": "Contact"
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "madeWith": "Made with"
+    },
+    "theme": {
+        "dark": "Dark Mode",
+        "light": "Light Mode",
+        "toggle": "Toggle Theme"
+    },
+    "language": {
+        "ar": "العربية",
+        "en": "English",
+        "switch": "Switch Language"
+    },
+    "hero": {
+        "greeting": "Hi, I'm",
+        "name": "Abdullah",
+        "role": "Software Developer",
+        "bio": "I turn ideas into professional digital products",
+        "cta": "Discover my journey"
+    },
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "Selected works reflecting my passion for development",
+        "viewProject": "View Project",
+        "preview": "Preview",
+        "skills": "Technologies Used",
+        "buildTime": "Build Time",
+        "story": "Development Story",
+        "challenges": "Challenges & Solutions",
+        "reason": "Why I Built This",
+        "noProjects": "No projects yet"
+    },
+    "journey": {
+        "title": "My Journey",
+        "subtitle": "A story of passion that started from scratch",
+        "age": "Age at the time"
+    },
+    "contact": {
+        "title": "Start Your Project",
+        "subtitle": "Tell me about your idea and I'll help turn it into reality",
+        "name": "Name",
+        "email": "Email",
+        "serviceType": "Service Type",
+        "budget": "Budget",
+        "message": "Project Details",
+        "submit": "Start Project 🚀",
+        "services": {
+            "mvp": "MVP — Minimum Viable Product",
+            "saas": "SaaS — Software as a Service",
+            "ai": "AI Integration"
+        },
+        "budgets": {
+            "low": "$150 - $500",
+            "mid": "$500 - $1,000",
+            "high": "+$1,000"
+        },
+        "success": {
+            "title": "Request Received! 🎉",
+            "message": "I'll review it and get back to you within 24 hours with an action plan."
+        },
+        "errors": {
+            "required": "This field is required",
+            "email": "Invalid email address",
+            "rateLimit": "Too many requests. Please try again later.",
+            "generic": "An error occurred. Please try again."
+        }
+    },
+    "feedback": {
+        "title": "Help Me Improve",
+        "subtitle": "Your feedback helps me enhance the site experience",
+        "placeholder": "Write your feedback or suggestion here...",
+        "submit": "Send Feedback"
+    },
+    "survey": {
+        "title": "Welcome! 👋",
+        "subtitle": "I'd love to know more about you — just a few seconds",
+        "skip": "Skip",
+        "skipAll": "Skip Survey",
+        "next": "Next",
+        "finish": "Finish",
+        "freeTextPlaceholder": "Type your answer here..."
+    }
+}
