@@ -3,22 +3,12 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { useTheme } from "@/components/shared/ThemeProvider";
+import type { SocialLink } from "@/types";
 
 /**
  * FooterClient — Client Component
  * Renders the footer UI with dynamic social links, theme toggle, and language switcher.
  */
-
-interface SocialLink {
-    id: string;
-    platform: string;
-    url: string;
-    labelAr: string;
-    labelEn: string;
-    icon: string | null;
-    order: number;
-    isActive: boolean;
-}
 
 interface FooterClientProps {
     socialLinks: SocialLink[];

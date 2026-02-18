@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import type { ProjectRow } from "@/types";
 
 /**
  * Admin Projects CMS Page
@@ -9,16 +10,6 @@ import ImageUpload from "@/components/admin/ImageUpload";
  * - Create / Edit / Delete projects
  * - Toggle publish/featured status
  */
-
-interface ProjectRow {
-    id: string;
-    titleEn: string;
-    titleAr: string;
-    slug: string;
-    isPublished: boolean;
-    isFeatured: boolean;
-    order: number;
-}
 
 export default function AdminProjectsPage() {
     const [projects, setProjects] = useState<ProjectRow[]>([]);

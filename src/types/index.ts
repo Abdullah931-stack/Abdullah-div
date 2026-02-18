@@ -148,3 +148,41 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
     page: number;
     pageSize: number;
 }
+
+// ─────────────────────────────────────────────
+// Admin Row Types — JSON-serialized (string dates)
+// Used in admin CMS pages (client components)
+// ─────────────────────────────────────────────
+export interface ProjectRow {
+    id: string;
+    titleEn: string;
+    titleAr: string;
+    slug: string;
+    isPublished: boolean;
+    isFeatured: boolean;
+    order: number;
+}
+
+export interface TimelineRow {
+    id: string;
+    date: string;
+    age: number;
+    titleAr: string;
+    titleEn: string;
+    storyAr: string;
+    storyEn: string;
+    imageUrl: string | null;
+    order: number;
+}
+
+export interface MessageRow {
+    id: string;
+    senderName: string;
+    senderEmail: string;
+    serviceType: string;
+    budget: string;
+    body: string;
+    isRead: boolean;
+    emailStatus: string;
+    createdAt: string;
+}

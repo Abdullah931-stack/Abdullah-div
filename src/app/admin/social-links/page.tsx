@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { SocialLink } from "@/types";
 
 /**
  * Admin Social Links CMS Page
@@ -9,22 +10,11 @@ import { useState, useEffect } from "react";
  * - Toggle active status
  */
 
-interface SocialLinkRow {
-    id: string;
-    platform: string;
-    url: string;
-    labelAr: string;
-    labelEn: string;
-    icon: string | null;
-    order: number;
-    isActive: boolean;
-}
-
 export default function AdminSocialLinksPage() {
-    const [links, setLinks] = useState<SocialLinkRow[]>([]);
+    const [links, setLinks] = useState<SocialLink[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
-    const [editing, setEditing] = useState<SocialLinkRow | null>(null);
+    const [editing, setEditing] = useState<SocialLink | null>(null);
     const [form, setForm] = useState({
         platform: "",
         url: "",
@@ -79,7 +69,7 @@ export default function AdminSocialLinksPage() {
         } catch { }
     }
 
-    async function toggleActive(link: SocialLinkRow) {
+    async function toggleActive(link: SocialLink) {
         try {
             await fetch(`/api/admin/social-links/${link.id}`, {
                 method: "PUT",
@@ -90,7 +80,7 @@ export default function AdminSocialLinksPage() {
         } catch { }
     }
 
-    function editLink(link: SocialLinkRow) {
+    function editLink(link: SocialLink) {
         setEditing(link);
         setForm({
             platform: link.platform,

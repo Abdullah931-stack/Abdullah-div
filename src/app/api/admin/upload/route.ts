@@ -1,12 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { requireAdmin } from "@/lib/auth/require-admin";
-import { createClient } from "@supabase/supabase-js";
+import { createAdminClient } from "@/lib/supabase/admin";
 
-// Admin-only Supabase client with service role key — bypasses RLS
-const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Centralized admin client — bypasses RLS
+const supabaseAdmin = createAdminClient();
 
 /**
  * POST /api/admin/upload

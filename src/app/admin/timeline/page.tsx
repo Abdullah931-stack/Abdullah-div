@@ -2,24 +2,13 @@
 
 import { useState, useEffect } from "react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import type { TimelineRow } from "@/types";
 
 /**
  * Admin Timeline CMS Page
  * - List all timeline entries
  * - Create / Edit / Delete entries
  */
-
-interface TimelineRow {
-    id: string;
-    date: string;
-    age: number;
-    titleAr: string;
-    titleEn: string;
-    storyAr: string;
-    storyEn: string;
-    imageUrl: string | null;
-    order: number;
-}
 
 export default function AdminTimelinePage() {
     const [entries, setEntries] = useState<TimelineRow[]>([]);

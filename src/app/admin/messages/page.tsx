@@ -1,24 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { MessageRow } from "@/types";
 
 /**
  * Admin Messages Inbox Page
  * - List all messages (newest first)
  * - Mark as read / Delete
  */
-
-interface MessageRow {
-    id: string;
-    senderName: string;
-    senderEmail: string;
-    serviceType: string;
-    budget: string;
-    body: string;
-    isRead: boolean;
-    emailStatus: string;
-    createdAt: string;
-}
 
 export default function AdminMessagesPage() {
     const [messages, setMessages] = useState<MessageRow[]>([]);
@@ -82,8 +71,8 @@ export default function AdminMessagesPage() {
                         <div
                             key={msg.id}
                             className={`rounded-xl border bg-[#0D1117] p-4 transition-all ${msg.isRead
-                                    ? "border-gray-800"
-                                    : "border-teal-500/30 bg-teal-500/5"
+                                ? "border-gray-800"
+                                : "border-teal-500/30 bg-teal-500/5"
                                 }`}
                         >
                             <div className="flex items-start justify-between">
